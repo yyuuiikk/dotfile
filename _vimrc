@@ -26,6 +26,7 @@ nmap <C-W>v :vsp<CR>
 "--<ESC>を2回クリックすることでハイライトをOFFにする
 nmap <ESC><ESC> :noh<CR>
 
+
 "---
 
 "---NeoBundle設定
@@ -35,10 +36,10 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/home/vagrant/.vim/bundle/neobundle.vim/
+set runtimepath+=/Users/yuta/.vim/bundle/neobundle.vim/
 
 " Required:
-call neobundle#begin(expand('/home/vagrant/.vim/bundle'))
+call neobundle#begin(expand('/Users/yuta/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -77,6 +78,12 @@ set write
 "
 "---quickrun
 NeoBundle 'thinca/vim-quickrun'
+"
+"---カラースキーマ jellybeans
+NeoBundle 'nanotech/jellybeans.vim'
+
+syntax enable
+hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
 
 "---
 
@@ -85,6 +92,11 @@ NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
 " Required:
 call neobundle#end()
+
+
+"--カラースキーマ プラグインの指定
+"---call neobundle#end() の後に書かないとエラーが表示される
+colorscheme jellybeans
 
 " Required:
 filetype plugin indent on
