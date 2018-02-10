@@ -1,8 +1,8 @@
 "---基本設定
-set tabstop=4
+set tabstop=2
 set autoindent
 set nu
-set shiftwidth=4
+set shiftwidth=2
 "--保存時の文字コード
 set fileencoding=utf-8
 "--読み込み時の文字コードの自動判別. 左側が優先される
@@ -20,89 +20,120 @@ set noswapfile
 set ignorecase
 
 "--C-W,sで横分割
-nmap <C-W>s :sp<CR>
+"--nmap <C-W>s :split<CR>
+nmap ss :split<CR>
 "--C-W,vで縦分割
-nmap <C-W>v :vsp<CR>
+"--nmap <C-W>v :vsplit<CR>
+nmap vv :vsplit<CR>
 "--<ESC>を2回クリックすることでハイライトをOFFにする
 nmap <ESC><ESC> :noh<CR>
 
 
 "---
 
-"---NeoBundle設定
-"NeoBundle Scripts-----------------------------
+"---dein設定
+
+
+
+"dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=/Users/yuta/.vim/bundle/neobundle.vim/
+set runtimepath+=/home/vagrant/.vim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call neobundle#begin(expand('/Users/yuta/.vim/bundle'))
+if dein#load_state('/home/vagrant/.vim/dein')
+  call dein#begin('/home/vagrant/.vim/dein')
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+  " Let dein manage dein
+  " Required:
+  call dein#add('/home/vagrant/.vim/dein/repos/github.com/Shougo/dein.vim')
 
-" Add or remove your Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
+  " Add or remove your plugins here:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
 
-"---個別にインストールしたもの
-"---emmet-vim
-NeoBundle 'mattn/emmet-vim'
-"--キーバインド（Ctl+yの後に,を2回）
-"
-"---vim-javascript（Javascriptのシンタックス）
-NeoBundle 'pangloss/vim-javascript'
-"
-"---vim-css3-syntax（cssのシンタックス）
-NeoBundle 'hail2u/vim-css3-syntax'
-"
-"---html5（html5のシンタックス）
-NeoBundle 'othree/html5.vim'
-"
-"---unite.vim
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc.vim'
-"
-"---vimfiler
-NeoBundle 'Shougo/vimfiler'
-"--vimfiler 書き込み設定
-set modifiable
-set write
-"
-"---quickrun
-NeoBundle 'thinca/vim-quickrun'
-"
-"---カラースキーマ jellybeans
-NeoBundle 'nanotech/jellybeans.vim'
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('flazz/vim-colorschemes')
 
-syntax enable
-hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
+	"---syntax check
+  call dein#add('vim-syntastic/syntastic')
+	set statusline+=%#warningmsg#
+	set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
 
-"---
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_auto_loc_list = 1
+	let g:syntastic_check_on_open = 1
+	let g:syntastic_check_on_wq = 0
+  
+  "---個別にインストールしたもの
+  "---emmet-vim
+  call dein#add('mattn/emmet-vim')
+  "--キーバインド（Ctl+yの後に,を2回）
+  "
+  "---vim-javascript（Javascriptのシンタックス）
+  call dein#add('pangloss/vim-javascript')
+  "
+  "---vim-css3-syntax（cssのシンタックス）
+  call dein#add('hail2u/vim-css3-syntax')
+  "
+  "---html5（html5のシンタックス）
+  call dein#add('othree/html5.vim')
+  "---ウインドウサイズ変更
+  call dein#add('simeji/winresizer')
+  
+  "---unite.vim
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/vimproc', {'build': 'make'})
+  "
+  "---vimfiler
+  call dein#add('Shougo/vimfiler')
+  "--vimfiler 書き込み設定
+  set modifiable
+  set write
+  "
+  "---quickrun
+  call dein#add('thinca/vim-quickrun')
+  "---カラースキーマ jellybeans
+  call dein#add('nanotech/jellybeans.vim')
+  "
+  syntax enable
+  hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
+  "---
+  "
+  
+  call dein#add('Shougo/vimshell')
+  "let g:vimshell_execute_file_list['rb'] = 'ruby'
+  "let $PATH="$HOME/.rbenv/shims:".$PATH
+  
+  "--カラースキーマ プラグインの指定
+  "---call neobundle#end() の後に書かないとエラーが表示される
+  colorscheme jellybeans
 
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 
-" Required:
-call neobundle#end()
+  "call dein#add('vim-pandoc/vim-pandoc')
+  call dein#add('vim-pandoc/vim-pandoc-syntax')
 
+  " You can specify revision/branch/tag.
+  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
-"--カラースキーマ プラグインの指定
-"---call neobundle#end() の後に書かないとエラーが表示される
-colorscheme jellybeans
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
 
 " Required:
 filetype plugin indent on
+syntax enable
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
 
+"End dein Scripts-------------------------
+"
