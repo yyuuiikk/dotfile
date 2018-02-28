@@ -1,8 +1,8 @@
 "---基本設定
-set tabstop=2
+set tabstop=4
 set autoindent
 set nu
-set shiftwidth=2
+set shiftwidth=4
 "--保存時の文字コード
 set fileencoding=utf-8
 "--読み込み時の文字コードの自動判別. 左側が優先される
@@ -28,6 +28,8 @@ nmap vv :vsplit<CR>
 "--<ESC>を2回クリックすることでハイライトをOFFにする
 nmap <ESC><ESC> :noh<CR>
 
+"-- Colorscheme適用
+set t_Co=256
 
 "---
 
