@@ -28,8 +28,6 @@ nmap vv :vsplit<CR>
 "--<ESC>を2回クリックすることでハイライトをOFFにする
 nmap <ESC><ESC> :noh<CR>
 
-"-- Colorscheme適用
-set t_Co=256
 
 "---
 
@@ -114,7 +112,6 @@ if dein#load_state('/home/vagrant/.vim/dein')
   
   "--カラースキーマ プラグインの指定
   "---call neobundle#end() の後に書かないとエラーが表示される
-  colorscheme jellybeans
 
 
   "call dein#add('vim-pandoc/vim-pandoc')
@@ -130,7 +127,12 @@ endif
 
 " Required:
 filetype plugin indent on
-syntax enable
+
+" color scheme
+syntax on 
+colorscheme jellybeans
+"-- Colorscheme適用
+set t_Co=256
 
 " If you want to install not installed plugins on startup.
 "if dein#check_install()
