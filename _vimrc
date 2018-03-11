@@ -95,7 +95,9 @@ if dein#load_state('/home/vagrant/.vim/dein')
   "--vimfiler 書き込み設定
   set modifiable
   set write
-  "
+  "--VimFilerのショートカット
+  nmap <C-i> :VimFiler -split -simple -winwidth=35 -no-quit<ENTER>
+
   "---quickrun
   call dein#add('thinca/vim-quickrun')
   "---カラースキーマ jellybeans
